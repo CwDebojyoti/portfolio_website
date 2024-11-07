@@ -1,0 +1,28 @@
+{% include "header.html" %}
+{% from 'bootstrap5/form.html' import render_form %}
+
+
+<div>
+    <div class="position-relative d-flex align-items-center justify-content-center"
+        style="background-color: #0BCEAF; height: 200px; background-size: cover; background-repeat: no-repeat;">
+        <!-- <h1 class="display-1 text-uppercase text-white" style="-webkit-text-stroke: 1px #dee2e6;">Project</h1> -->
+        <h1 class="position-absolute text-titlecase text-white">{{projects.title}}</h1>
+    </div>
+    <div class="container align-items-center justify-content-center">
+
+        <div class="col-lg-12">
+            <!-- <h3 class="mb-4 text-center">{{projects.title}}</h3> -->
+
+            <p>
+                {{projects.description |safe}}
+            </p>
+        </div>
+
+    </div>
+</div>
+
+
+
+
+
+{% include "footer.html" %}

@@ -1,0 +1,32 @@
+{% include "header.html" %}
+{% from 'bootstrap5/form.html' import render_form %}
+
+<div class="container-fluid py-5" id="contact">
+    <div class="container">
+        <div class="position-relative d-flex align-items-center justify-content-center">
+            <h1 class="display-1 text-uppercase text-white" style="-webkit-text-stroke: 1px #dee2e6;">LogIn</h1>
+            <h1 class="position-absolute text-uppercase text-primary">LogIn</h1>
+        </div>
+        <div>
+            {% with messages = get_flashed_messages() %}
+            {% if messages %}
+            {% for message in messages %}
+            <p class="text-center text-color">{{message}}</p>
+            {%endfor%}
+            {%endif%}
+            {%endwith%}
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="contact-form">
+                    {{ render_form(form) }}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+{% include "footer.html" %}
