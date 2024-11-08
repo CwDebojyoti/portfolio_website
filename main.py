@@ -4,7 +4,7 @@ from hashlib import md5
 from flask_bootstrap import Bootstrap5
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column, relationship
-from sqlalchemy import Integer, String, Text, Date
+from sqlalchemy import Integer, String, Text, Date, Float
 from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField
 from wtforms.validators import DataRequired, URL
@@ -46,8 +46,8 @@ class Education(db.Model):
     exam: Mapped[str] = mapped_column(String(250), unique=True, nullable=False)
     institute: Mapped[str] = mapped_column(String(250), nullable=False)
     university: Mapped[str] = mapped_column(String(250), nullable=False)
-    year: Mapped[str] = mapped_column(Integer, nullable=False)
-    marks: Mapped[str] = mapped_column(Integer, nullable=False)
+    year: Mapped[str] = mapped_column(String(100), nullable=False)
+    marks: Mapped[float] = mapped_column(Float, nullable=False)
     description: Mapped[str] = mapped_column(Text, nullable=False)
 
 
