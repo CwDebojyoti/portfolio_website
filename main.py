@@ -57,7 +57,7 @@ class Experience(db.Model):
     company: Mapped[str] = mapped_column(String(250), unique=True, nullable=False)
     position: Mapped[str] = mapped_column(String(250), nullable=False)
     joining_date = mapped_column(Date, nullable=False)
-    exit_date = mapped_column(Date, nullable=False)
+    exit_date = mapped_column(Date, nullable=True)
     job_description: Mapped[str] = mapped_column(Text, nullable=False)
     
 
