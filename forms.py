@@ -18,7 +18,7 @@ class NewExperience(FlaskForm):
     company = StringField('Name of the Organization', validators=[DataRequired()])
     position = StringField('Position', validators=[DataRequired()])
     starting_date = DateField('Joining Date', validators=[DataRequired()])
-    exit_date = DateField('Exit Date', validators=[DataRequired()])
+    exit_date = DateField('Exit Date')
     job_description = CKEditorField('Job Description',validators=[DataRequired()])
     submit = SubmitField('Save')
 
