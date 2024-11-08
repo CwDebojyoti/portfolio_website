@@ -4,7 +4,7 @@ from hashlib import md5
 from flask_bootstrap import Bootstrap5
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column, relationship
-from sqlalchemy import Integer, String, Text
+from sqlalchemy import Integer, String, Text, Date
 from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField
 from wtforms.validators import DataRequired, URL
@@ -56,8 +56,8 @@ class Experience(db.Model):
     id: Mapped[int] = mapped_column(Integer, primary_key=True)
     company: Mapped[str] = mapped_column(String(250), unique=True, nullable=False)
     position: Mapped[str] = mapped_column(String(250), nullable=False)
-    joining_date: Mapped[str] = mapped_column(date, nullable=False)
-    exit_date: Mapped[str] = mapped_column(date, nullable=False)
+    joining_date: Mapped[str] = mapped_column(Date, nullable=False)
+    exit_date: Mapped[str] = mapped_column(Date, nullable=False)
     job_description: Mapped[str] = mapped_column(Text, nullable=False)
     
 
