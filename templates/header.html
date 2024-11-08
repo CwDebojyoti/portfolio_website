@@ -51,9 +51,9 @@
                 <a href="#contact" class="nav-item nav-link">Contact</a>
             </div>
             {%if logged_in:%}
-            <a href="{{url_for('login')}}" class="btn btn-outline-primary d-none d-lg-block">Log In</a>
-            {%else:%}
             <a href="{{url_for('logout')}}" class="btn btn-outline-primary d-none d-lg-block">Log Out</a>
+            {%else:%}
+            <a href="{{url_for('login')}}" class="btn btn-outline-primary d-none d-lg-block">Log In</a>
             {%endif%}
         </div>
     </nav>
