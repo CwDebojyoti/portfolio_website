@@ -50,7 +50,11 @@
                 <a href="#blog" class="nav-item nav-link">Certificates</a>
                 <a href="#contact" class="nav-item nav-link">Contact</a>
             </div>
-            <a href="{{url_for('login')}}" class="btn btn-outline-primary d-none d-lg-block">Hire Me</a>
+            {%if logged_in:%}
+            <a href="{{url_for('login')}}" class="btn btn-outline-primary d-none d-lg-block">Log In</a>
+            {%else:%}
+            <a href="{{url_for('logout')}}" class="btn btn-outline-primary d-none d-lg-block">Log Out</a>
+            {%endif%}
         </div>
     </nav>
 
