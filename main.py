@@ -149,7 +149,7 @@ def update_experience():
     if new_experience.validate_on_submit():
 
         if new_experience.present.data: 
-            exit_date_value = "Present" 
+            exit_date_value = None 
         else: 
             exit_date_value = new_experience.exit_date.data
 
