@@ -253,7 +253,7 @@ password = os.environ.get("SMTP_PASS")
 
 def send_message(name, user_email, subject, message):
     msg_content = f"Name: {name}\nemail: {user_email}\nSubject: {subject}\nMessage: {message}"
-    connection = smtplib.SMTP("smtp.gmail.com")
+    connection = smtplib.SMTP("smtp.gmail.com" 587)
     connection.starttls()
     connection.login(user= my_email, password= password)
     connection.sendmail(from_addr= my_email, 
