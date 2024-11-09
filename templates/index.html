@@ -151,12 +151,12 @@
                             <i class="far fa-dot-circle text-primary position-absolute"
                                 style="top: 2px; left: -32px;"></i>
                             <h5 class="font-weight-bold mb-1">{{experience.position}}</h5>
-                            {% if experience.present %}
+                            {% if experience.present == None %}
                             <p class="mb-2"><strong>{{experience.company}}</strong> | <small>{{experience.joining_date}}
-                                to {{experience.exit_date}}</small></p>
+                                to Present</small></p>
                             {% else %}
                             <p class="mb-2"><strong>{{experience.company}}</strong> | <small>{{experience.joining_date}}
-                                    to Present</small></p>
+                                    to {{experience.exit_date}}</small></p>
                             {%endif%}
                             <p>{{experience.job_description |safe}}</p>
                         </div>
