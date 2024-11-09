@@ -4,7 +4,7 @@ from hashlib import md5
 from flask_bootstrap import Bootstrap5
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column, relationship
-from sqlalchemy import Integer, String, Text, Date, Float
+from sqlalchemy import Integer, String, Text, Date, Float, Boolean
 from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField
 from wtforms.validators import DataRequired, URL
@@ -58,6 +58,7 @@ class Experience(db.Model):
     position: Mapped[str] = mapped_column(String(250), nullable=False)
     joining_date = mapped_column(Date, nullable=False)
     exit_date = mapped_column(Date, nullable=True)
+    present = mapped_column(Boolean, default=False)
     job_description: Mapped[str] = mapped_column(Text, nullable=False)
     
 
@@ -146,11 +147,17 @@ def update_experience():
     new_experience = NewExperience()
 
     if new_experience.validate_on_submit():
+
+        if new_experience.present.data: 
+            exit_date_value = "Present" 
+        else: 
+            exit_date_value = new_experience.exit_date.data
+
         new_organization = Experience(
             company = new_experience.company.data,
             position = new_experience.position.data,
             joining_date = new_experience.starting_date.data,
-            exit_date = new_experience.exit_date.data,
+            exit_date = exit_date_value,
             job_description = new_experience.job_description.data
         )
 

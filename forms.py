@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, SubmitField, PasswordField, SelectField, DateField
+from wtforms import StringField, SubmitField, PasswordField, SelectField, DateField, validators, BooleanField
 from wtforms.validators import DataRequired, URL
 from flask_ckeditor import CKEditorField
 
@@ -18,7 +18,8 @@ class NewExperience(FlaskForm):
     company = StringField('Name of the Organization', validators=[DataRequired()])
     position = StringField('Position', validators=[DataRequired()])
     starting_date = DateField('Joining Date', validators=[DataRequired()])
-    exit_date = DateField('Exit Date')
+    exit_date = DateField('Exit Date', validators=[validators.Optional()])
+    present = BooleanField('Currently Present')
     job_description = CKEditorField('Job Description',validators=[DataRequired()])
     submit = SubmitField('Save')
 
