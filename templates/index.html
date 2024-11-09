@@ -63,15 +63,30 @@
             <div class="row align-items-center">
                 <div class="col-lg-5 pb-4 pb-lg-0">
                     <!-- <img class="img-fluid rounded w-100" src="static/img/about.jpg" alt=""> -->
-                    <h6>Home Location</h6>
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14567.667862473392!2d88.25291445842065!3d24.10441535071047!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39f97de6c9a4d9b1%3A0xb787f11de7d65079!2sKhagra%2C%20Berhampore%2C%20West%20Bengal!5e0!3m2!1sen!2sin!4v1729717200879!5m2!1sen!2sin" width="400" height="215" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    <div class="responsive-iframe">
+                        <h6>Home Location</h6>
+                        <iframe
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14567.667862473392!2d88.25291445842065!3d24.10441535071047!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39f97de6c9a4d9b1%3A0xb787f11de7d65079!2sKhagra%2C%20Berhampore%2C%20West%20Bengal!5e0!3m2!1sen!2sin!4v1729717200879!5m2!1sen!2sin"
+                            width="400" height="215" style="border:0;" allowfullscreen="" loading="lazy"
+                            referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
 
-                    <h6>Work Location</h6>
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3889.870835187873!2d77.669796874472!3d12.851618087452824!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae6d27f79afe6b%3A0xc60ee40ef865c864!2sJanani%20Nivas!5e0!3m2!1sen!2sin!4v1730219946027!5m2!1sen!2sin" width="400" height="215" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    <div class="responsive-iframe">
+                        <h6>Work Location</h6>
+                        <iframe
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3889.870835187873!2d77.669796874472!3d12.851618087452824!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae6d27f79afe6b%3A0xc60ee40ef865c864!2sJanani%20Nivas!5e0!3m2!1sen!2sin!4v1730219946027!5m2!1sen!2sin"
+                            width="400" height="215" style="border:0;" allowfullscreen="" loading="lazy"
+                            referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
                 </div>
                 <div class="col-lg-7">
                     <h3 class="mb-4">Data Scientist & AI/ML Engineer</h3>
-                    <p>Meet Debojyoti Chattoraj, a dynamic professional who embarked on his career as an Analytical Chemist in the pharmaceutical industry. Driven by an insatiable curiosity and passion for innovation, he transitioned into the realm of Data Science, Artificial Intelligence and Machine Learning. With a rich background in chemistry, he meticulously acquired a diverse range of skills that now fuel his expertise in Data Science and Artificial Intelligence, making him a unique blend of analytical precision and technological prowess.</p>
+                    <p>Meet Debojyoti Chattoraj, a dynamic professional who embarked on his career as an Analytical
+                        Chemist in the pharmaceutical industry. Driven by an insatiable curiosity and passion for
+                        innovation, he transitioned into the realm of Data Science, Artificial Intelligence and Machine
+                        Learning. With a rich background in chemistry, he meticulously acquired a diverse range of
+                        skills that now fuel his expertise in Data Science and Artificial Intelligence, making him a
+                        unique blend of analytical precision and technological prowess.</p>
                     <div class="row mb-3">
                         <div class="col-sm-6 py-2">
                             <h6>Name: <span class="text-secondary">Debojyoti Chattoraj</span></h6>
@@ -153,7 +168,7 @@
                             <h5 class="font-weight-bold mb-1">{{experience.position}}</h5>
                             {% if experience.exit_date == None %}
                             <p class="mb-2"><strong>{{experience.company}}</strong> | <small>{{experience.joining_date}}
-                                to Present</small></p>
+                                    to Present</small></p>
                             {% else %}
                             <p class="mb-2"><strong>{{experience.company}}</strong> | <small>{{experience.joining_date}}
                                     to {{experience.exit_date}}</small></p>
@@ -190,7 +205,8 @@
                                 aria-valuemax="100"></div>
                         </div>
                     </div>
-                    <div class="skill mb-4" data-toggle="tooltip" title="Joins, Queries & Subqueries, Aggregations, Views, CTE">
+                    <div class="skill mb-4" data-toggle="tooltip"
+                        title="Joins, Queries & Subqueries, Aggregations, Views, CTE">
                         <div class="d-flex justify-content-between">
                             <h6 class="font-weight-bold">SQL</h6>
                             <h6 class="font-weight-bold">80%</h6>
@@ -200,7 +216,8 @@
                                 aria-valuemax="100"></div>
                         </div>
                     </div>
-                    <div class="skill mb-4" data-toggle="tooltip" title="Semantic HTML, Bootstrap, Multimedia, Responsive Design, Linking">
+                    <div class="skill mb-4" data-toggle="tooltip"
+                        title="Semantic HTML, Bootstrap, Multimedia, Responsive Design, Linking">
                         <div class="d-flex justify-content-between">
                             <h6 class="font-weight-bold">HTML</h6>
                             <h6 class="font-weight-bold">75%</h6>
@@ -212,7 +229,8 @@
                     </div>
                 </div>
                 <div class="col-md-6">
-                    <div class="skill mb-4" data-toggle="tooltip" title="Responsive Design, Flexbox & Grid, Animations & Transitions, Bootstrap">
+                    <div class="skill mb-4" data-toggle="tooltip"
+                        title="Responsive Design, Flexbox & Grid, Animations & Transitions, Bootstrap">
                         <div class="d-flex justify-content-between">
                             <h6 class="font-weight-bold">CSS</h6>
                             <h6 class="font-weight-bold">70%</h6>
@@ -222,7 +240,8 @@
                                 aria-valuemax="100"></div>
                         </div>
                     </div>
-                    <div class="skill mb-4" data-toggle="tooltip" title="Data Modeling, Data Preparation, Data Visualization, DAX (Data Analysis Expressions), Power Query">
+                    <div class="skill mb-4" data-toggle="tooltip"
+                        title="Data Modeling, Data Preparation, Data Visualization, DAX (Data Analysis Expressions), Power Query">
                         <div class="d-flex justify-content-between">
                             <h6 class="font-weight-bold">Power BI</h6>
                             <h6 class="font-weight-bold">65%</h6>
@@ -232,7 +251,8 @@
                                 aria-valuemax="100"></div>
                         </div>
                     </div>
-                    <div class="skill mb-4" data-toggle="tooltip" title="Advanced Formulas and Functions, Data Visualization, Macros and VBA">
+                    <div class="skill mb-4" data-toggle="tooltip"
+                        title="Advanced Formulas and Functions, Data Visualization, Macros and VBA">
                         <div class="d-flex justify-content-between">
                             <h6 class="font-weight-bold">Excel</h6>
                             <h6 class="font-weight-bold">85%</h6>
