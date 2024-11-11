@@ -26,7 +26,7 @@ class NewExperience(FlaskForm):
 
 class NewProject(FlaskForm):
     title = StringField('Title', validators=[DataRequired()])
-    category = SelectField('Subject', choices=['Data_Analytics','Data_Science', 'Web_Development'], validators=[DataRequired()])
+    category = SelectField('Subject', choices=['Data_Analytics', 'Data_Science', 'Web_Development', 'Python_Development'], validators=[DataRequired()])
     image = StringField("Thumbnail URL", validators=[DataRequired()])
     description = CKEditorField("Description", validators=[DataRequired()])
     submit = SubmitField('Save')
