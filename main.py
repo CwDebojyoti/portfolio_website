@@ -113,11 +113,28 @@ def home():
 
 
 
-@app.route("/<int:project_id>", methods = ['GET', 'POST'])
+# @app.route("/<int:project_id>", methods = ['GET', 'POST'])
+# def project(project_id):
+#     requested_project = db.get_or_404(Project, project_id)
+
+#     return render_template("project.html", projects = requested_project, logged_in = current_user.is_authenticated)
+
+
+
+@app.route("/project_details/<int:project_id>")
 def project(project_id):
     requested_project = db.get_or_404(Project, project_id)
 
-    return render_template("project.html", projects = requested_project, logged_in = current_user.is_authenticated)
+    # Convert project title into a valid filename (replace spaces with underscores)
+    doc_filename = requested_project.title.replace(" ", "_") + ".pdf"
+    doc_path = f"static/docs/{doc_filename}"
+
+    if os.path.exists(doc_path):
+        # Get absolute URL of the file
+        file_url = f"{request.host_url}{doc_path}"
+        return jsonify({"file_url": file_url})
+    
+    return jsonify({"error": "Project document not found"}), 404
 
 
 
