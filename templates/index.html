@@ -344,13 +344,13 @@
                                 <button type="button" class="btn btn-primary open-project"
                                     data-project-id="{{ project.id }}" data-bs-toggle="modal"
                                     data-bs-target="#projectModal">
-                                    Open Project Details
+                                    View Project Details
                                 </button>
 
 
-                                <a href="{{url_for('project', project_id = project.id)}}">
+                                <!-- <a href="{{url_for('project', project_id = project.id)}}">
                                     <i class="fa text-white" style="font-size: 30px;">🔎</i>
-                                </a>
+                                </a> -->
                                 {%if logged_in:%}
                                 <a href="{{url_for('edit_project', project_id = project.id)}}">
                                     <i class="fa  text-white" style="font-size: 30px;">✒️</i>
