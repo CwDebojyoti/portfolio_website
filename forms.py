@@ -38,6 +38,12 @@ class NewCertificate(FlaskForm):
     submit = SubmitField('Save')
 
 
+class NewTools(FlaskForm):
+    title = StringField('Title', validators=[DataRequired()])
+    image = StringField("Image of the Tools", validators=[DataRequired()])
+    submit = SubmitField('Save')
+
+
 class RegisterForm(FlaskForm):
     name = StringField('User Name', validators=[DataRequired()])
     email = StringField('Enter Email', validators=[DataRequired()])

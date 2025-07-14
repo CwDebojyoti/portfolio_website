@@ -85,7 +85,7 @@
                             <h6>Degree: <span class="text-secondary">Bachelor</span></h6>
                         </div>
                         <div class="col-sm-6 py-2">
-                            <h6>Experience: <span class="text-secondary">6 Years</span></h6>
+                            <h6>Experience: <span class="text-secondary">{{ experience_duration }}</span></h6>
                         </div>
                         <div class="col-sm-6 py-2">
                             <h6>Phone: <span class="text-secondary">+91 8900731996</span></h6>
@@ -155,7 +155,13 @@
                         <div class="position-relative mb-4">
                             <i class="far fa-dot-circle text-primary position-absolute"
                                 style="top: 2px; left: -32px;"></i>
-                            <h5 class="font-weight-bold mb-1">{{experience.position}}</h5>
+                            <h5 class="font-weight-bold mb-1">{{experience.position}}
+                                {%if logged_in:%}
+                                <a href="{{url_for('edit_experience', experience_id = experience.id)}}">
+                                    <i class="fa  text-white" style="font-size: 30px;">🖊️</i>
+                                </a>
+                                {%endif%}
+                            </h5>
                             {% if experience.exit_date == None %}
                             <p class="mb-2"><strong>{{experience.company}}</strong> | <small>{{experience.joining_date}}
                                     to Present</small></p>
@@ -258,6 +264,48 @@
         </div>
     </div>
     <!-- Skill End -->
+
+
+    <!-- Tools Start -->
+    <div class="container-fluid pt-5" id="blog">
+        <div class="container">
+            <div class="position-relative d-flex align-items-center justify-content-center">
+                <h1 class="display-1 text-uppercase text-white"
+                    style="-webkit-text-stroke: 1px #dee2e6; font-family: Arial, sans-serif;">Tools
+                </h1>
+                <h1 class="position-absolute text-uppercase text-primary">Tools I Work with</h1>
+            </div>
+            <div class="row">
+                {% for tool in tools %}
+                <div class="col-lg-1 mb-5">
+                    <div class="position-relative mb-4">
+                        <img class="tool-icon rounded " src="{{tool.image}}" alt=""
+                            style="height: 100px; width: 100px;">
+
+                    </div>
+
+
+                </div>
+                {%endfor%}
+
+                {%if logged_in:%}
+                <div class="col-lg-4 col-md-6 mb-4 portfolio-item second">
+                    <div class="position-relative overflow-hidden mb-2">
+                        <img class="img-fluid rounded" src="static/img/portfolio-2.jpg" alt=""
+                            style="height: 90px; width: 120px;">
+                        <div class="portfolio-btn bg-primary d-flex align-items-center justify-content-center">
+                            <a href="{{url_for('update_tools')}}">
+                                <i class="fa fa-plus text-white" style="font-size: 10px;"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                {%endif%}
+
+            </div>
+        </div>
+    </div>
+    <!-- Tools End -->
 
 
 

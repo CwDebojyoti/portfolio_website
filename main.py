@@ -11,9 +11,10 @@ from wtforms.validators import DataRequired, URL
 from flask_ckeditor import CKEditor, CKEditorField
 from werkzeug.security import generate_password_hash, check_password_hash
 from datetime import date
+from dateutil.relativedelta import relativedelta
 from functools import wraps
 from flask import abort
-from forms import NewEducation, NewExperience, NewProject, NewCertificate, LoginForm, RegisterForm
+from forms import NewEducation, NewExperience, NewProject, NewCertificate, LoginForm, RegisterForm, NewTools
 import smtplib
 import os
 
@@ -77,8 +78,14 @@ class Certificate(db.Model):
     id: Mapped[int] = mapped_column(Integer, primary_key= True)
     title: Mapped[str] = mapped_column(String(250), unique= True, nullable= False)
     image: Mapped[str] = mapped_column(String(250), nullable= False)
-    
 
+
+class Tools(db.Model):
+    __tablename__ = "tools"
+    id: Mapped[int] = mapped_column(Integer, primary_key= True)
+    title: Mapped[str] = mapped_column(String(250), unique= True, nullable= False)
+    image: Mapped[str] = mapped_column(String(250), nullable= False)
+    
 
 class User(UserMixin, db.Model):
     __tablename__ = "users"
@@ -101,6 +108,13 @@ def load_user(user_id):
 
 @app.route("/")
 def home():
+
+    start_date = date(2018, 4, 1)  # Change to your real start date
+    today = date.today()
+    
+    delta = relativedelta(today, start_date)
+    experience_duration = f"{delta.years} Years & {delta.months} Months"
+
     edu_result = db.session.execute(db.select(Education).order_by(Education.id.desc()))
     all_qualification = edu_result.scalars().all()
     exp_result = db.session.execute(db.select(Experience).order_by(Experience.id.desc()))
@@ -109,7 +123,9 @@ def home():
     all_project = pro_result.scalars().all()
     cert_result = db.session.execute(db.select(Certificate))
     all_certificates = cert_result.scalars().all()
-    return render_template("index.html", qualifications = all_qualification, experiences = all_experience, projects = all_project, certificates = all_certificates, logged_in = current_user.is_authenticated)
+    tools_result = db.session.execute(db.select(Tools))
+    all_tools = tools_result.scalars().all()
+    return render_template("index.html", qualifications = all_qualification, experiences = all_experience, projects = all_project, certificates = all_certificates, tools = all_tools, experience_duration=experience_duration, logged_in = current_user.is_authenticated)
 
 
 
@@ -224,6 +240,23 @@ def update_certificate():
 
 
 
+@app.route("/update-tools", methods = ['GET', 'POST'])
+def update_tools():
+    new_tools = NewTools()
+
+    if new_tools.validate_on_submit():
+        new_tool = Tools(
+            title = new_tools.title.data,
+            image = new_tools.image.data
+        )
+
+        db.session.add(new_tool)
+        db.session.commit()
+
+    return render_template('update_tools.html', form = new_tools, logged_in = current_user.is_authenticated)
+
+
+
 @app.route("/edit-project/<int:project_id>", methods = ['GET', 'POST'])
 def edit_project(project_id):
     project_to_edit = db.get_or_404(Project, project_id)
@@ -246,6 +279,36 @@ def edit_project(project_id):
         return redirect(url_for("project", project_id = project_id))
     
     return render_template('update_portfolio.html', form = edit_project_form, logged_in = current_user.is_authenticated)
+
+
+
+@app.route("/edit-experience/<int:experience_id>", methods = ['GET', 'POST'])
+def edit_experience(experience_id):
+    experience_to_edit = db.get_or_404(Experience, experience_id)
+
+    edit_exp_form = NewExperience(
+        company = experience_to_edit.company,
+        position = experience_to_edit.position,
+        starting_date = experience_to_edit.joining_date,
+        exit_date = experience_to_edit.exit_date,
+        present = experience_to_edit.present,
+        job_description = experience_to_edit.job_description
+    )
+
+    if edit_exp_form.validate_on_submit():
+        experience_to_edit.company = edit_exp_form.company.data
+        experience_to_edit.position = edit_exp_form.position.data
+        experience_to_edit.joining_date = edit_exp_form.starting_date.data
+        experience_to_edit.exit_date = edit_exp_form.exit_date.data
+        experience_to_edit.present = edit_exp_form.present.data
+        experience_to_edit.job_description = edit_exp_form.job_description.data
+
+
+        db.session.commit()
+
+        return redirect(url_for("home", experience_id = experience_id))
+    
+    return render_template('update_experience.html', form = edit_exp_form, logged_in = current_user.is_authenticated)
 
 
 
