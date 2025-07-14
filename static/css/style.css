@@ -11217,3 +11217,12 @@ h6,
   height: 100%;
   border: 0;
 }
+
+
+.tool-icon {
+  width: 120px;
+  height: 90px;
+  object-fit: contain; /* or "cover" based on your layout preference */
+  display: block;
+  margin: 0 auto;
+}
