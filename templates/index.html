@@ -102,8 +102,8 @@
                         </div>
                     </div>
                     <div class="d-flex justify-content-center gap-3 mt-3">
-                    <a href="" class="btn btn-outline-primary mr-4">Hire Me</a>
-                    <a href="" class="btn btn-outline-primary">Learn More</a>
+                        <a href="" class="btn btn-outline-primary mr-4">Hire Me</a>
+                        <a href="" class="btn btn-outline-primary">Learn More</a>
                     </div>
                 </div>
             </div>
@@ -275,6 +275,15 @@
                 </h1>
                 <h1 class="position-absolute text-uppercase text-primary">Tools I Work with</h1>
             </div>
+
+            {% if logged_in %}
+            <div class="text-center mt-1">
+                <a href="{{ url_for('edit_tools') }}" class="btn btn-outline-primary">
+                    Edit Tools
+                </a>
+            </div>
+            {% endif %}
+
             <div class="row">
                 {% for tool in tools %}
                 <div class="col-lg-1 mb-5">
@@ -340,7 +349,7 @@
                             class="portfolio-btn bg-primary d-flex flex-column align-items-center justify-content-center">
                             <div class="mb-2 text-white">{{project.title}}</div>
                             <div>
-                                
+
                                 <button type="button" class="btn btn-primary open-project"
                                     data-project-id="{{ project.id }}" data-bs-toggle="modal"
                                     data-bs-target="#projectModal">
@@ -390,6 +399,15 @@
                 </h1>
                 <h1 class="position-absolute text-uppercase text-primary">Awards & Certificates</h1>
             </div>
+
+            {% if logged_in %}
+            <div class="text-center mt-4">
+                <a href="{{ url_for('edit_certificates') }}" class="btn btn-outline-primary">
+                    Edit Certificates
+                </a>
+            </div>
+            {% endif %}
+
             <div class="row">
                 {% for certificate in certificates %}
                 <div class="col-lg-4 mb-5">

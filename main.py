@@ -239,6 +239,26 @@ def update_certificate():
     return render_template('update_certificate.html', form = new_certificate, logged_in = current_user.is_authenticated)
 
 
+@app.route("/edit-certificates")
+def edit_certificates():
+    certificates = Certificate.query.all()
+    return render_template("edit_certificates.html", certificates=certificates)
+
+
+@app.route("/save-certificate-edits", methods=["POST"])
+def save_certificate_edits():
+    certificates = Certificate.query.all()
+    for cert in certificates:
+        new_title = request.form.get(f"title_{cert.id}")
+        new_image = request.form.get(f"image_{cert.id}")
+        if new_title and new_image:
+            cert.title = new_title
+            cert.image = new_image
+    db.session.commit()
+    return redirect(url_for("home"))
+
+
+
 
 @app.route("/update-tools", methods = ['GET', 'POST'])
 def update_tools():
@@ -254,6 +274,26 @@ def update_tools():
         db.session.commit()
 
     return render_template('update_tools.html', form = new_tools, logged_in = current_user.is_authenticated)
+
+
+
+@app.route("/edit-tools")
+def edit_tools():
+    all_tools = Tools.query.all()
+    return render_template("edit_tools.html", tools=all_tools)
+
+
+@app.route("/save-tool-edits", methods=["POST"])
+def save_tool_edits():
+    tools = Tools.query.all()
+    for tool in tools:
+        new_title = request.form.get(f"title_{tool.id}")
+        new_image = request.form.get(f"image_{tool.id}")
+        if new_title and new_image:
+            tool.title = new_title
+            tool.image = new_image
+    db.session.commit()
+    return redirect(url_for("home"))
 
 
 
