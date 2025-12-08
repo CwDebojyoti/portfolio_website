@@ -1,0 +1,25 @@
+# --- Build & Push Flask App Image ---
+steps:
+- name: 'gcr.io/cloud-builders/docker'
+  id: 'Build Flask App Image'
+  args: ['build', '-t', 'gcr.io/spheric-crowbar-480612-n9/portfolio-website', '-f', 'Dockerfile', '.']
+
+- name: 'gcr.io/cloud-builders/docker'
+  id: 'Push Flask App Image'
+  args: ['push', 'gcr.io/spheric-crowbar-480612-n9/portfolio-website']
+
+# --- Deploy Flask App to Cloud Run ---
+- name: 'gcr.io/cloud-builders/gcloud'
+  id: 'Deploy Flask App'
+  args:
+    [
+      'run', 'deploy', 'portfolio-website',
+      '--image=gcr.io/spheric-crowbar-480612-n9/portfolio-website',
+      '--platform=managed',
+      '--region=us-central1',
+      '--allow-unauthenticated',
+      '--project=spheric-crowbar-480612-n9'
+    ]
+
+options:
+  logging: CLOUD_LOGGING_ONLY

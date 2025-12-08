@@ -1,1 +1,6 @@
 portfolio.db
+__pycache__/
+instance/
+*.pyc
+migrations/
+alembic.ini

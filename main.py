@@ -34,7 +34,8 @@ login_manager.init_app(app)
 # CREATE DATABASE
 class Base(DeclarativeBase):
     pass
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:ubuntu@localhost/portfolio'
+#app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:ubuntu@localhost/portfolio'
+app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql://postgres:ubuntu@129.154.242.103:5432/portfolio"
 db = SQLAlchemy(model_class=Base)
 db.init_app(app)
 
@@ -441,5 +442,6 @@ def logout():
 
 
 if __name__ == "__main__":
-    app.run(debug=True, port=8001)
+    port = int(os.environ.get("PORT", 8080))
+    app.run(host="0.0.0.0", port=port)
 
