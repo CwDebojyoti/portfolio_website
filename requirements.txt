@@ -13,3 +13,4 @@ psycopg2-binary==2.9.9
 requests==2.32.3
 twilio
 python-dateutil
+google-cloud-storage

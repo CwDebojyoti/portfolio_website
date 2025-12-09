@@ -16,6 +16,8 @@ from functools import wraps
 from flask import abort
 from forms import NewEducation, NewExperience, NewProject, NewCertificate, LoginForm, RegisterForm, NewTools
 import smtplib
+from google.cloud import storage
+from datetime import timedelta
 import os
 
 
@@ -137,7 +139,7 @@ def home():
 #     return render_template("project.html", projects = requested_project, logged_in = current_user.is_authenticated)
 
 
-
+"""
 @app.route("/project_details/<int:project_id>")
 def project(project_id):
     requested_project = db.get_or_404(Project, project_id)
@@ -152,7 +154,19 @@ def project(project_id):
         return jsonify({"file_url": file_url})
     
     return jsonify({"error": "Project document not found"}), 404
+"""
 
+@app.route("/project_details/<int:project_id>")
+def project(project_id):
+    requested_project = db.get_or_404(Project, project_id)
+
+    doc_filename = requested_project.title.replace(" ", "_") + ".pdf"
+
+    GCS_BUCKET_NAME = os.environ.get("GCS_BUCKET_NAME")
+
+    file_url = f"https://storage.googleapis.com/{GCS_BUCKET_NAME}/project_docs/{doc_filename}"
+
+    return jsonify({"file_url": file_url})
 
 
 @app.route("/update-education", methods = ['GET', 'POST'])
